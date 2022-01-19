@@ -32,11 +32,16 @@ export const fetchUserRegister = (data) => {
       .post("/register", data)
       .then((response) => {
         // TODO
-        dispatch(userRegisterSuccess(response.data));
+        console.log(response.data);
+        if (response.data.errors.length) {
+          dispatch(userRegisterFailure(response.data.errors));
+        } else {
+          dispatch(userRegisterSuccess(response.data));
+        }
       })
-      .catch(() => {
+      .catch((error) => {
         // TODO
-        dispatch(userRegisterFailure());
+        dispatch(userRegisterFailure(error));
       });
   };
 };

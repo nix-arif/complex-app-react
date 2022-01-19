@@ -14,7 +14,6 @@ const HomeGuest = (props) => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    console.log(name, value);
     setRegisterData({ ...registerData, [name]: value });
   };
 
