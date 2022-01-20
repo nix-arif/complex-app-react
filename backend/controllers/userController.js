@@ -1,8 +1,15 @@
 const User = require('../models/User');
 
 exports.login = (req, res) => {
-	console.log(req.body);
 	const user = new User(req.body);
+	user
+		.login()
+		.then((data) => {
+			res.status(200).json(data);
+		})
+		.catch((error) => {
+			res.status(400).json(error);
+		});
 };
 
 exports.logout = (req, res) => {};

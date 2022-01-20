@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { fetchUserRegister, fetchUserSignIn } from '../redux';
 import { connect } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const initialRegistrationData = {
 	username: '',
@@ -14,6 +15,7 @@ const initialSignInData = {
 };
 
 const HomeGuest = (props) => {
+	let navigate = useNavigate();
 	const { fetchUserRegister, fetchUserSignIn } = props;
 	const [registerData, setRegisterData] = useState(initialRegistrationData);
 	const [signInData, setSignInData] = useState(initialSignInData);
@@ -31,6 +33,7 @@ const HomeGuest = (props) => {
 	const registerHandleSubmit = (e) => {
 		e.preventDefault();
 		fetchUserRegister(registerData);
+		navigate('/dashboard');
 	};
 
 	const signInHandleSubmit = (e) => {

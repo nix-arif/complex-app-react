@@ -78,7 +78,13 @@ export const fetchUserSignIn = (data) => {
 				dispatch(userSignInSuccess(response.data));
 			})
 			.catch((error) => {
-				dispatch(userSignInFailure(error));
+				dispatch(
+					userSignInFailure(
+						error.response && error.response.data
+							? error.response.data
+							: error.message
+					)
+				);
 			});
 	};
 };
